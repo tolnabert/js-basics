@@ -26,7 +26,7 @@ export function celebrateBirthday(person) {
 
   // solution 2
   // return JSON.parse(JSON.stringify({ ...person, age: person.age + 1 }));
-  
+
   return { ...person, age: person.age + 1 };
 }
 
@@ -40,6 +40,12 @@ export function celebrateBirthday(person) {
 export function getMarried(person, newName) {
   // person.name = newName
   // return person;
+
+  // solution 2
+// const marriedPerson = Object.assign({}, person)
+// marriedPerson.name = newName;
+// return marriedPerson;
+
   return { ...person, name: newName };
 }
 
