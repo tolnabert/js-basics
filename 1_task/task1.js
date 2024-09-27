@@ -21,8 +21,13 @@
  * @returns a person with a modified age
  */
 export function celebrateBirthday(person) {
-  person.age++
-  return person;
+  // person.age++
+  // return person;
+
+  // solution 2
+  // return JSON.parse(JSON.stringify({ ...person, age: person.age + 1 }));
+
+  return { ...person, age: person.age + 1 };
 }
 
 /**
@@ -33,8 +38,15 @@ export function celebrateBirthday(person) {
  * @returns a person with a modified name.
  */
 export function getMarried(person, newName) {
-  person.name = newName
-  return person;
+  // person.name = newName
+  // return person;
+
+  // solution 2
+// const marriedPerson = Object.assign({}, person)
+// marriedPerson.name = newName;
+// return marriedPerson;
+
+  return { ...person, name: newName };
 }
 
 /**
@@ -46,8 +58,9 @@ export function getMarried(person, newName) {
  * @returns the house with the new color
  */
 export function paintHouse(house, newColor) {
-  house.color = newColor;
-  return house;
+  // house.color = newColor;
+  // return house;
+  return { ...house, color: newColor };
 }
 
 /**
@@ -59,8 +72,13 @@ export function paintHouse(house, newColor) {
  * @returns The new queue.
  */
 export function goToSecurityCheck(queue, me) {
-  queue.push(me);
-  return queue;
+  // queue.push(me);
+  // return queue;
+
+  // solution 2
+  // return queue.concat(me);
+
+  return [...queue, me];
 }
 
 /**
@@ -72,8 +90,9 @@ export function goToSecurityCheck(queue, me) {
  * @returns The new queue.
  */
 export function applyFastLane(queue, me) {
-  queue.unshift(me);
-  return queue;
+  // queue.unshift(me);
+  // return queue;
+  return [me, ...queue];
 }
 
 /**
@@ -89,8 +108,10 @@ export function doSecretAgentThing(queue, me, position) {
   if(position >= queue.length) {
     throw new Error('Invalid position, the queue is too short.');
   }
-  queue[position] = me;
-  return queue;
+  // queue[position] = me;
+  // return queue;
+
+  return [...queue.slice(0, position), me, ...queue.slice(position + 1)];
 }
 
 /**
@@ -105,6 +126,9 @@ export function doPoliceIntervention(queue, position) {
   if(position >= queue.length) {
     throw new Error('Invalid position, the queue is too short.');
   }
-  queue.splice(position, 1);
-  return queue;
+  // queue.splice(position, 1);
+  // return queue;
+
+  return [...queue.slice(0, position), ...queue.slice(position + 1)];
+
 }
