@@ -9,7 +9,7 @@ const zeus = {
   }
 }
 
-const paintedZeus = {
+const paintedZeus = { // it copies the first level only, so if we change the second object it is changing the first array as well since the reference is copied only ( shallow copy)
   ...zeus,
 }
 paintedZeus.colors.push('green');
@@ -23,10 +23,13 @@ paintedZeus.colors.push('green');
 
 // Celebrate the owner's birthday
 
+ //  <REF0> = ['brown', 'black'] we just copy the reference and not the array
+ //  <REF1> = {name: 'Higgins',age: 45} we just copy the reference and not the array
+
 const apollo = {
   name: 'Apollo',
-  colors: ['brown', 'black'],
-  owner: {
+  colors: ['brown', 'black'], // it s like only a <REF0>
+  owner: {// it s like only a <REF1>
     name: 'Higgins',
     age: 45
   }
