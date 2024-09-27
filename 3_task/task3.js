@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /*
  * Your task is to ensure that the functions here do not 
  * change the input object or its sub objects or arrays. Keep the original business logic.
@@ -34,8 +36,22 @@
  * @returns The modified dog object.
  */
 export function celebrateTheOwnersBirthday(dog) {
-  dog.owner.age++
-  return dog
+  // dog.owner.age++
+  // return dog
+
+  //solution 1
+
+  // return {
+  //   ...dog,
+  //   owner: {
+  //     ...dog.owner,
+  //     age: dog.owner.age + 1
+  //   }
+  // };
+
+  const clonedDog = _.cloneDeep(dog);
+  clonedDog.owner.age++;
+  return clonedDog;
 }
 
 /**
@@ -56,8 +72,23 @@ export function celebrateTheOwnersBirthday(dog) {
  * @param {string} newColor 
  */
 export function paintTheDogPartly(dog, newColor) {
-  dog.colors.push(newColor);
-  return dog;
+  
+  // original problem
+
+  // dog.colors.push(newColor);
+  // return dog;
+
+
+  // solution 1
+
+  // return {
+  //   ...dog,
+  //   colors: [...dog.colors, newColor]
+  // };
+
+  const clonedDog = _.cloneDeep(dog);
+  clonedDog.colors.push(newColor);
+  return clonedDog;
 }
 
 /**
@@ -71,8 +102,20 @@ export function paintTheDogPartly(dog, newColor) {
  * @returns the modified cart
  */
 export function increaseItemQuantity(cart, index) {
-  cart[index].quantity++;
-  return cart;
+  // original problem
+  
+  // cart[index].quantity++;
+  // return cart;
+
+  // solution 1
+
+  // return cart.map((item, i) => 
+  //   i === index ? { ...item, quantity: item.quantity + 1 } : item
+  // );
+
+  const clonedCart = _.cloneDeep(cart);
+  clonedCart[index].quantity++;
+  return clonedCart;
 }
 
 /**
@@ -91,8 +134,21 @@ export function renameItem(cart, index, newName) {
     throw new Error('Invalid index, the cart has not enough items.');
   }
 
-  cart[index].name = newName;
-  return cart;
+  // original problem
+
+  // cart[index].name = newName;
+  // return cart;
+
+  // solution 1
+
+  // return cart.map((item, i) => 
+  //   i === index ? { ...item, name: newName } : item
+  // );
+
+  const clonedCart = _.cloneDeep(cart);
+  clonedCart[index].name = newName;
+  return clonedCart;
+
 }
 
 /**
@@ -112,9 +168,21 @@ export function applyDiscount(cart, index, discount) {
   if(index >= cart.length) {
     throw new Error('Invalid index, the cart has not enough items.');
   }
+  // original problem
 
-  const item = cart[index]; 
-  const newPrice = item.price * (1 - (discount / 100));
-  item.price = newPrice;
-  return cart;
+  // const item = cart[index]; 
+  // const newPrice = item.price * (1 - (discount / 100));
+  // item.price = newPrice;
+  // return cart;
+
+  // solution 1
+
+  // return cart.map((item, i) => 
+  //   i === index ? { ...item, price: item.price * (1 - (discount / 100)) } : item
+  // );
+
+  const clonedCart = _.cloneDeep(cart);
+  const item = clonedCart[index];
+  item.price *= (1 - (discount / 100));
+  return clonedCart;
 }
